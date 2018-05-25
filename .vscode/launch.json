@@ -64,11 +64,12 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "runserver.py",
-                "FLASK_ENV": "development"
+                "FLASK_APP": "HelloFlask/app.py"                
             },
             "args": [
-                "run"
+                "run",
+                "--no-debugger",
+                "--no-reload"      // Remove to auto-reload modified pages
             ]
         },
         {
