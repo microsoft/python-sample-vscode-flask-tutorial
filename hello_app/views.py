@@ -18,7 +18,6 @@ def contact():
 def hello_there(name):
     return render_template(
         "hello_there.html",
-        title='Hello, Flask',
         name=name,
         date=datetime.now()
     )
