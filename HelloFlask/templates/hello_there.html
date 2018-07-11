@@ -2,10 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="/static/site.css" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css') }}" />
         <title>{{ title }}</title>
     </head>
     <body>
-        <span class="message">{{ message }}</span> It's {{ date }}.
+        <span class="message">Hello there, {{ name }}!</span> It's {{ date.strftime("%A, %d %B, %Y at %X") }}.
     </body>
 </html>
