@@ -64,7 +64,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "hello_flask/app.py"                
+                "FLASK_APP": "hello_app/app.py"                
             },
             "args": [
                 "run",
