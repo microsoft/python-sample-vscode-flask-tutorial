@@ -1,27 +1,31 @@
-from datetime import datetime
-from flask import Flask, render_template
+import datetime
+
+import flask
+
 from hello_app import app
 
-@app.route('/')
+
+@app.route("/")
 def home():
-    return render_template("home.html")
+    return flask.render_template("home.html")
 
-@app.route('/about')
+
+@app.route("/about")
 def about():
-    return render_template("about.html")
+    return flask.render_template("about.html")
 
-@app.route('/contact')
+
+@app.route("/contact")
 def contact():
-    return render_template("contact.html")
+    return flask.render_template("contact.html")
 
-@app.route('/hello/<name>')
+
+@app.route("/hello/<name>")
 def hello_there(name):
-    return render_template(
-        "hello_there.html",
-        name=name,
-        date=datetime.now()
-    )
+    date = datetime.datetime.now()
+    return flask.render_template("hello_there.html", name=name, date=date)
 
-@app.route('/api/data')
+
+@app.route("/api/data")
 def get_data():
-    return app.send_static_file('data.json')
+    return app.send_static_file("data.json")
