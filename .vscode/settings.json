@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "${workspaceFolder}\\env\\Scripts\\python.exe"
+    "python.pythonPath": "${workspaceFolder}\\env\\Scripts\\python.exe",
+    "appService.deploySubpath": "",
+    "appService.defaultWebAppToDeploy": "/subscriptions/44f7aaf4-97f8-4aa9-a791-245ed34e3bd5/resourceGroups/appsvc_rg_linux_centralus/providers/Microsoft.Web/sites/vscode-flask-02"
 }
