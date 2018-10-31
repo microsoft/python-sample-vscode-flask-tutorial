@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
 from . import app
 
 @app.route("/")
@@ -14,13 +14,18 @@ def about():
 def contact():
     return render_template("contact.html")
 
-@app.route("/hello/<name>")
-def hello_there(name):
-    return render_template(
-        "hello_there.html",
-        name=name,
-        date=datetime.now()
-    )
+@app.route("/hello")
+def hello_there():
+
+	name = request.args.get("name")
+	if not name:
+		return redirect(url_for("home"))
+	
+	return render_template(
+		"hello_there.html",
+		name=name.capitalize(),
+		date=datetime.now()
+	)
 
 @app.route("/api/data")
 def get_data():

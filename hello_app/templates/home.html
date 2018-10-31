@@ -4,4 +4,11 @@ Home
 {% endblock %}
 {% block content %}
 <p>Home page for the Visual Studio Code Flask tutorial.</p>
+<form action="{{ url_for('hello_there') }}" class="form-inline" method="get">
+    <div class="form-group">
+      <label class="sr-only" for="name">Your Name</label>
+      <input class="form-control" name="name" placeholder="Your name" type="text"/>
+    </div>
+  <button class="btn btn-default" type="submit">Say Hello!</button>
+</form>
 {% endblock %}
