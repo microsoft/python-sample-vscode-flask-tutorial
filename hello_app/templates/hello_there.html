@@ -9,7 +9,7 @@
         {%if name %}
             <span class="message">Hello there, {{ name }}!</span> It's {{ date.strftime("%A, %d %B, %Y at %X") }}.
         {% else %}
-            <span class="message">You must provide a name.</span>
+            <span class="message">What's your name? Provide it after /hello/ in the URL.</span>
         {% endif %}
     </body>
 </html>
