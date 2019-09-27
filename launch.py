@@ -2,9 +2,7 @@
 # Example usage <flask>:
 # cd /app
 # env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1
-# python ptvsd_loader.py --default --client \
-#    --host localhost --port 3000 \
-#          -m flask run --no-debugger --no-reload --port=5000 --host=0.0.0.0
+# python loader.py --default --client --host localhost --port 3000 -m flask run --no-debugger --no-reload --port=5000 --host=0.0.0.0
 
 import os
 import os.path
@@ -12,8 +10,6 @@ import sys
 import traceback
 
 args = sys.argv[:]
-# remove self
-# args.pop(1)
 try:
     lib_path = os.path.join(os.path.dirname(__file__), 'lib', 'python')
     sys.path.insert(0, lib_path)
@@ -27,6 +23,5 @@ except:
     sys.exit(1)
 finally:
     sys.path.remove(lib_path)
-# start app
-print(args)
+#print(args)
 main(args)
