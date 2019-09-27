@@ -5,120 +5,51 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: runserver.py",
+            "name": "Run with ptvsd debugger",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/runserver.py",
-        },
-        {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
+            "stopOnEntry": false,
+            "pythonPath": "${config:python.pythonPath}",
+            "module": "flask",
+            "cwd": "${workspaceFolder}",
             "env": {
-                "FLASK_ENV": "development"
-            }
-        },
-        {
-            "name": "Python: Attach",
-            "type": "python",
-            "request": "attach",
-            "localRoot": "${workspaceFolder}",
-            "remoteRoot": "${workspaceFolder}",
-            "port": 3000,
-            "secret": "my_secret",
-            "host": "localhost"
-        },
-        {
-            "name": "Python: Terminal (integrated)",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
+                "FLASK_APP": "hello_app.webapp"
+            },
+            "args": [
+                "run",
+                "--no-debugger",
+                "--no-reload",
+                "--port=5000",
+                "--host=0.0.0.0"
+            ],
             "console": "integratedTerminal"
         },
         {
-            "name": "Python: Terminal (external)",
+            "name": "Attach",
             "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "externalTerminal"
-        },
-        {
-            "name": "Python: Django",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/manage.py",
-            "args": [
-                "runserver",
-                "--noreload",
-                "--nothreading"
+            "request": "attach",
+            "port": 3000,
+            "host": "localhost",
+            //"jinja": true, // allows you to set breakpoints in jinja2 tempate files.
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "." // automatically maps to the remote cwd where your app is running
+                }
             ],
-            "debugOptions": [
-                "RedirectOutput",
-                "Django"
-            ]
         },
         {
-            "name": "Python: Flask (0.11.x or later)",
+            "name": "Run Flask (local)",
             "type": "python",
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "hello_app.webapp"                
+                "FLASK_APP": "hello_app.webapp"
             },
             "args": [
                 "run",
                 "--no-debugger",
                 "--no-reload"      // Remove to auto-reload modified pages
-            ]
-        },
-        {
-            "name": "Python: Module",
-            "type": "python",
-            "request": "launch",
-            "module": "module.name"
-        },
-        {
-            "name": "Python: Pyramid",
-            "type": "python",
-            "request": "launch",
-            "args": [
-                "${workspaceFolder}/development.ini"
-            ],
-            "debugOptions": [
-                "RedirectOutput",
-                "Pyramid"
-            ]
-        },
-        {
-            "name": "Python: Watson",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/console.py",
-            "args": [
-                "dev",
-                "runserver",
-                "--noreload=True"
-            ]
-        },
-        {
-            "name": "Python: All debug Options",
-            "type": "python",
-            "request": "launch",
-            "pythonPath": "${config:python.pythonPath}",
-            "program": "${file}",
-            "module": "module.name",
-            "env": {
-                "VAR1": "1",
-                "VAR2": "2"
-            },
-            "envFile": "${workspaceFolder}/.env",
-            "args": [
-                "arg1",
-                "arg2"
-            ],
-            "debugOptions": [
-                "RedirectOutput"
             ]
         }
     ]

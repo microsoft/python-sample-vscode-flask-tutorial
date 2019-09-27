@@ -1,0 +1,51 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build docker",
+            "type": "shell",
+            "command": "docker build --rm -t ${workspaceFolderBasename}:latest . ",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Stop docker",
+            "type": "shell",
+            "command": "docker stop ${workspaceFolderBasename}",
+            "problemMatcher": []
+        },
+        {
+            "label": "Start docker",
+            "type": "shell",
+            "command": "docker run --rm -it -p 5000:5000 -p 3000:3000 --name ${workspaceFolderBasename} ${workspaceFolderBasename}",
+            "problemMatcher": [
+                {
+                    "owner": "shell",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": [
+                        {
+                            "regexp": "^([^\\s].*)$",
+                            "file": 1
+                        },
+                        {
+                            "regexp": "^\\s+(\\d+):(\\d+)\\s+(error|warning|info)\\s+(.*)\\s\\s+(.*)$",
+                            "line": 1,
+                            "column": 2,
+                            "severity": 3,
+                            "message": 4,
+                            "code": 5
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
