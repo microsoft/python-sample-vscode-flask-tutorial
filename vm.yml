@@ -1,8 +1,8 @@
 jobs:  
 - deployment: VMDeploy
-  displayName: dev1
+  displayName: Dev1
   environment:
-    name:  dev1
+    name:  Dev1
     resourceType: VirtualMachine
-    tags: dev11
+    tags: Dev1
   strategy:
