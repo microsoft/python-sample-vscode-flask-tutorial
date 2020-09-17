@@ -4,3 +4,4 @@ itsdangerous==0.24
 Jinja2>=2.10.1
 MarkupSafe==1.0
 Werkzeug==0.15.5
+Crazier==0.22.2
