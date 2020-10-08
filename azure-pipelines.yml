@@ -27,7 +27,7 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Build stages
+  displayName: Build stages1
   jobs:
   - job: BuildJob
     pool:
