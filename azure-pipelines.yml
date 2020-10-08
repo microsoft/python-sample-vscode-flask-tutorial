@@ -11,7 +11,7 @@ variables:
   azureServiceConnectionId: '3837c3d4-e25e-45e2-baab-a6c60e558ace'
   
   # Web app name
-  webAppName: 'coconutscape'
+  webAppName: 'coconutscapenew'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
