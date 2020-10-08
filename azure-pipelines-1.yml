@@ -6,6 +6,14 @@
 trigger:
 - master
 
+resources:
+  pipelines:
+  - pipeline: coconutscape-website
+    source: coconutscape-infra
+    trigger: 
+      branches:
+      - master
+
 variables:
   # Azure Resource Manager connection created during pipeline creation
   azureServiceConnectionId: '12505988-2d67-43aa-a5c6-d18b28026f90'
