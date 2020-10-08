@@ -11,13 +11,13 @@ variables:
   azureServiceConnectionId: '3837c3d4-e25e-45e2-baab-a6c60e558ace'
   
   # Web app name
-  webAppName: 'customcoconutscape'
+  webAppName: 'coconutscapenew'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
   # Environment name
-  environmentName: 'customcoconutscape'
+  environmentName: 'coconutscapenew'
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
