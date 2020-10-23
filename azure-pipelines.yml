@@ -34,12 +34,12 @@ steps:
     mkdir ~/.ssh
     echo ${CODECOMMIT_PK} > ~/.ssh/codecommit_rsa.tmp
     base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/aws_rsa
-    cat aws_rsa
-    chmod 400 aws_rsa
+    cat codecommit_rsa
+    chmod 400 codecommit_rsa
     cat <<EOF > ~/.ssh/config
       Host git-codecommit.*.amazonaws.com
       User ${CODECOMMIT_USER}
-      IdentityFile aws_rsa
+      IdentityFile codecommit_rsa
     EOF
     set +e
     ssh -o StrictHostKeyChecking=no git-codecommit.${CODECOMMIT_REGION}.amazonaws.com
