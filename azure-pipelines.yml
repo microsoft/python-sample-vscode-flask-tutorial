@@ -37,7 +37,7 @@ steps:
     cat codecommit_rsa
     chmod 400 codecommit_rsa
     cat <<EOF > ~/.ssh/config
-      Host git-codecommit.*.amazonaws.com
+      Host git-codecommit.us-east-2.amazonaws.com
       User ${CODECOMMIT_USER}
       IdentityFile codecommit_rsa
     EOF
