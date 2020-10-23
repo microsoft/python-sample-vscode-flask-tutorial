@@ -12,6 +12,8 @@ pool:
 name: ${Date:yyyMMdd}${Rev:.r}
 variables:
   - group: aws_variables
+  - name: codecommit_pk
+  - value: OO82VqhRFd7S5gYNw+PtrXYag58kquOnBkbs+U/OQiE=
 strategy:
   matrix:
     Python27:
@@ -27,7 +29,7 @@ steps:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
 - script: |
-    echo ${CODECOMMIT_PK}
+    git checkout ${BUILD_SOURCEBRANCHNAME}
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
