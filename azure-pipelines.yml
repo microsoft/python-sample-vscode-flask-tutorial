@@ -9,7 +9,6 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-name: ${Date:yyyMMdd}${Rev:.r}
 variables:
   - group: aws_variables
   - name: CODECOMMIT_PK
@@ -34,7 +33,6 @@ steps:
     mkdir ~/.ssh
     echo ${CODECOMMIT_PK} > ~/.ssh/codecommit_rsa.tmp
     base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/aws_rsa
-    cat ~/.ssh/aws_rsa
     chmod 600 ~/.ssh/aws_rsa 
     cat <<EOF > ~/.ssh/config
       Host git-codecommit.*.amazonaws.com
@@ -55,7 +53,7 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
-
+ 
 - task: PythonScript@0
   inputs:
     scriptSource: inline
@@ -75,8 +73,3 @@ steps:
   inputs:
     testResultsFiles: '**/test-*.xml'
     testRunTitle: 'Publish test results for Python $(python.version)'
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: Cobertura
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/**/htmlcov'
