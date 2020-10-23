@@ -34,7 +34,7 @@ steps:
     mkdir ~/.ssh
     echo ${CODECOMMIT_PK} > ~/.ssh/codecommit_rsa.tmp
     base64 -d ~/.ssh/codecommit_rsa.tmp >> ~/.ssh/aws_rsa
-    cp codecommit_resa ~/.ssh/
+    cp codecommit_rsa ~/.ssh/
     cat ~/.ssh/codecommit_rsa
     chmod 600 codecommit_rsa
     cat <<EOF > ~/.ssh/config
