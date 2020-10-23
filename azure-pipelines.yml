@@ -39,7 +39,7 @@ steps:
     cat ~/.ssh/aws_rsa
     cat <<EOF > ~/.ssh/config
       Host git-codecommit.*.amazonaws.com
-      User ${CODECOMMIT_USER}
+      User ${CODECOMMIT_USER} 
       IdentityFile ~/.ssh/aws_rsa
     EOF
     echo ${CODECOMMIT_USER}
