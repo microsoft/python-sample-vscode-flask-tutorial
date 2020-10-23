@@ -34,12 +34,12 @@ steps:
     AWS_CODECOMMIT_REPO="ssh://git-codecommit.${CODECOMMIT_REGION}.amazonaws.com/v1/repos/${CODECOMMIT_NAME}"
     mkdir ~/.ssh
     echo ${CODECOMMIT_PK} > ~/.ssh/codecommit_rsa.tmp
-    base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/aws_persona
-    chmod 400 ~/.ssh/aws_persona
+    base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/codecommit_rsa
+    chmod 400 ~/.ssh/codecommit_rsa
     cat <<EOF > ~/.ssh/config
       Host git-codecommit.*.amazonaws.com
       User ${CODECOMMIT_USER}
-      IdentityFile ~/.ssh/aws_persona
+      IdentityFile ~/.ssh/codecommit_rsa
     EOF
     echo ${CODECOMMIT_USER}
     set +e
