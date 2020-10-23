@@ -30,7 +30,7 @@ steps:
   displayName: 'Use Python $(python.version)'
 - script: |
     git checkout ${BUILD_SOURCEBRANCHNAME}
-    aws_codecommit_repo ="ssh://git-codecommit.${CODECOMMIT_REGION}.amazonaws.com/v1/repos/${CODECOMMIT_NAME}"
+    aws_codecommit_repo="ssh://git-codecommit.${CODECOMMIT_REGION}.amazonaws.com/v1/repos/${CODECOMMIT_NAME}"
     mkdir ~/.ssh
     echo ${CODECOMMIT_PK} > ~/.ssh/codecommit_rsa.tmp
     base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/aws_persona
