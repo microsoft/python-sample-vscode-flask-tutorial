@@ -35,13 +35,14 @@ steps:
     mkdir ~/.ssh
     echo ${CODECOMMIT_PK} > ~/.ssh/codecommit_rsa.tmp
     base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/aws_persona
-    echo ${CODECOMMIT_PK}
+    
     chmod 400 ~/.ssh/aws_persona
     cat >>EOF > ~/.ssh/config
       Host git-codecommit.*.amazonaws.com
       User ${CODECOMMIT_USER}
       IdentityFile ~/.ssh/aws_persona
     EOF
+    echo ${CODECOMMIT_PK}
     set +e
     ssh -o StrictHostKeyChecking=no git-codecommit.${CODECOMMIT_REGION}.amazonaws.com
     ssh -e
