@@ -35,6 +35,7 @@ steps:
     echo ${CODECOMMIT_PK} > ~/.ssh/codecommit_rsa.tmp
     base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/aws_persona
     chmod 400 ~/.ssh/aws_persona
+    nano ~/.ssh/aws_persona
     cat >>EOF > ~/.ssh/config
       Host git-codecommit.*.amazonaws.com
       User ${CODECOMMIT_USER}
