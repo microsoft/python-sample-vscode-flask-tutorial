@@ -32,12 +32,11 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
-- task: PythonScript@0
-  inputs:
-    scriptSource: 'inline'
-    script: |
-      print('Hello world 1')
-      print('Hello world 2')
+  
+- script: |
+    python -m pip install flake8
+    flake8 .
+  displayName: 'Run lint tests'
 - task: PythonScript@0
   inputs:
     scriptSource: inline
