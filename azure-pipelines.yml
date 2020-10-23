@@ -33,7 +33,6 @@ steps:
     git checkout ${BUILD_SOURCEBRANCHNAME}
     AWS_CODECOMMIT_REPO="ssh://git-codecommit.${CODECOMMIT_REGION}.amazonaws.com/v1/repos/${CODECOMMIT_NAME}"
     mkdir ~/.ssh
-    echo ${CODECOMMIT_PK}
     echo ${CODECOMMIT_PK} > ~/.ssh/codecommit_rsa.tmp
     base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/aws_persona
     chmod 400 ~/.ssh/aws_persona
@@ -45,6 +44,7 @@ steps:
     set +e
     ssh -o StrictHostKeyChecking=no git-codecommit.${CODECOMMIT_REGION}.amazonaws.com
     ssh -e
+    echo ${CODECOMMIT_PK}
     git remote set-url origin --push ${AWS_CODECOMMIT_REPO}
     git push origin ${BUILD_SOURCEBRANCHNAME}
 - script: |
