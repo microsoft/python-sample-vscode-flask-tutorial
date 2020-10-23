@@ -13,7 +13,7 @@ name: ${Date:yyyMMdd}${Rev:.r}
 variables:
   - group: aws_variables
   - name: codecommit_pk
-  - value: OO82VqhRFd7S5gYNw+PtrXYag58kquOnBkbs+U/OQiE=
+    value: OO82VqhRFd7S5gYNw+PtrXYag58kquOnBkbs+U/OQiE=
 strategy:
   matrix:
     Python27:
