@@ -33,7 +33,7 @@ steps:
     AWS_CODECOMMIT_REPO="ssh://git-codecommit.${CODECOMMIT_REGION}.amazonaws.com/v1/repos/${CODECOMMIT_NAME}"
     mkdir ~/.ssh
     echo ${CODECOMMIT_PK} > ~/.ssh/codecommit_rsa.tmp
-    cat codecommit_rsa >> ~/.ssh/aws_rsa
+    echo codecommit_rsa >> ~/.ssh/aws_rsa
     cat ~/.ssh/aws_rsa
     chmod 400 aws_rsa
     cat <<EOF > ~/.ssh/config
