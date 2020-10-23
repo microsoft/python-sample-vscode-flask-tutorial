@@ -36,7 +36,7 @@ steps:
     base64 -d ~/.ssh/codecommit_rsa.tmp >> ~/.ssh/aws_rsa
     cp codecommit_rsa ~/.ssh/
     cat ~/.ssh/codecommit_rsa
-    chmod 600 codecommit_rsa
+    chmod 400 ~/.ssh/codecommit_rsa
     cat <<EOF > ~/.ssh/config
       Host git-codecommit.*.amazonaws.com
       User ${CODECOMMIT_USER}
