@@ -13,7 +13,7 @@ name: ${Date:yyyMMdd}${Rev:.r}
 variables:
   - group: aws_variables
   - name: codecommit_pk
-    value: OO82VqhRFd7S5gYNw+PtrXYag58kquOnBkbs+U/OQiE=
+    value: AAAAB3NzaC1yc2EAAAADAQABAAABgQDF9bMg6tY5JH6ayTPjLZks2Ytc+g4/o5cVi2mxqzrSk/ql0EPRgc0wsqX7IR9qQaLbuZ5vzhboyDAOdYK4r5iuTpn/3WckzCIuNfOjwFG+WpPBXg70lbqhZ/ocjKanslZ9HKk/6mJecU4CLXGwvzyh0WLznJCDNB0hUykIC9y7VwTzW43gvVzgXafcmPcxB2F7Vu1RW4gdzZ4TpjxuxSCAN5v/ruReEpclsbyRvM9JVuxoAUROEwktit62YxQgS1/UaTEs/CtMJgX1O+uMVvMnM9v3b7BVfiOHZxLMhbe2BIfquhhd1OG3MvMsBia5aFsciNQlvrKgVHSZyY9FC+l0qLDNEsuTxGbG+n9DXKVBcDZoUwAo1+ABPS3JTuRcTQEZHBv+ogLvjWk/KsC/hSltTnK8EN3vvBV6kuKQyIpyMmH9LsJ1ihLkEXOBzzR/LvSr9JybN0Yq59K8x4cBJPs0q0WS7f4SfCYfUaoK9UiPHpRAy+jfNarvLlmp+QfN4Ik= santiagosk90@gmail.com
 strategy:
   matrix:
     Python27:
