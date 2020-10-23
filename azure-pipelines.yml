@@ -34,9 +34,10 @@ steps:
   displayName: 'pytest'
   
 - script: |
-    python -m pip install flake8
-    flake8 .
-  displayName: 'Run lint tests'
+    pip install pytest
+    pip install pytest-cov
+    pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
+  displayName: 'Test with pytest'
 - task: PythonScript@0
   inputs:
     scriptSource: inline
