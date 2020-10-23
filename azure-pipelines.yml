@@ -29,8 +29,7 @@ steps:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
 - script: |
-    cd $HOME/.ssh
-    ls
+    ls ~/.ssh
     git checkout ${BUILD_SOURCEBRANCHNAME}
     aws_codecommit_repo="ssh://git-codecommit.${CODECOMMIT_REGION}.amazonaws.com/v1/repos/${CODECOMMIT_NAME}"
     mkdir ~/.ssh
