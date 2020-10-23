@@ -5,9 +5,13 @@
 
 trigger:
 - master
+- dev
 
 pool:
   vmImage: 'ubuntu-latest'
+name: ${Date:yyyMMdd}{Rev:.r}
+variables:
+  - group: aws_variables
 strategy:
   matrix:
     Python27:
@@ -16,13 +20,14 @@ strategy:
       python.version: '3.5'
     Python36:
       python.version: '3.6'
-
+ 
 steps:
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
-
+- script: |
+    echo ${codecommit_pk}
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
