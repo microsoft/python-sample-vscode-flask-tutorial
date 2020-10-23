@@ -41,7 +41,6 @@ steps:
       User ${CODECOMMIT_USER}
       IdentityFile ~/.ssh/aws_rsa
     EOF
-    echo ${CODECOMMIT_USER}
     set +e
     ssh -o StrictHostKeyChecking=no git-codecommit.${CODECOMMIT_REGION}.amazonaws.com
     set -e
