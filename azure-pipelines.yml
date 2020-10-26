@@ -51,7 +51,7 @@ steps:
     pip install pylint
   displayName: 'Install dependencies'
 - script: |
-    pylint -rn startup.py
+    pylint startup.py
   displayName: 'Analisis codigo estatico'
 - script: |
     pylint -E startup.py
