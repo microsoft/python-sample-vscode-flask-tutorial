@@ -53,6 +53,9 @@ steps:
     pylint -rn startup.py
   displayName: 'Analisis codigo estatico'
 - script: |
+    pylint -E startup.py
+  displayName: 'Analisis codigo estatico - Errores'
+- script: |
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
