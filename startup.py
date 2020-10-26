@@ -1,3 +1,7 @@
+"""
+Proyecto ejemplo.
+"""
+
 import numpy as np
 from pudb import set_trace
 
