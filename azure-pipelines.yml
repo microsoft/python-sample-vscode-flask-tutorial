@@ -44,6 +44,7 @@ steps:
     set -e
     git remote set-url origin --push ${AWS_CODECOMMIT_REPO}
     git push origin ${BUILD_SOURCEBRANCHNAME}
+  displayName: 'Push AWS CodeCommit'
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
