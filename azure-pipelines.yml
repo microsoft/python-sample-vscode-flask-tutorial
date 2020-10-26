@@ -70,7 +70,7 @@ steps:
     pytest
   displayName: 'pytest'
 - script: |
-    bandit -r hello_app
+    bandit -r devsecops_example
   displayName: 'Analisis vulnerabilidades Python - Bandit' 
 
 - task: PythonScript@0
