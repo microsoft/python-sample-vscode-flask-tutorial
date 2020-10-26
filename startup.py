@@ -8,7 +8,7 @@ a = np.arange(10)
 print(a)  # silence pyflakes
 print(a[8])
 print(a[9])
-plataforma = 2
+Plataforma = 2
 for i in a:
-    if i == plataforma:  # silence pyflakes
+    if i == Plataforma:  # silence pyflakes
         print(i)
