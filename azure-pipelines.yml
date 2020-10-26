@@ -49,13 +49,14 @@ steps:
     python -m pip install --upgrade pip
     pip install -r requirements.txt
     pip install pylint
-  displayName: 'Install dependencies'
+    pip install pyflakes
+  displayName: 'Install dependencies' 
+- script: |
+    pyflakes startup.py
+  displayName: 'Analisis codigo estatico - pyflakes'
 - script: |
     pylint startup.py
-  displayName: 'Analisis codigo estatico'
-- script: |
-    pylint -E startup.py
-  displayName: 'Analisis codigo estatico - Errores'
+  displayName: 'Analisis codigo estatico - Pylint'
 - script: |
     pip install pytest pytest-azurepipelines
     pytest
