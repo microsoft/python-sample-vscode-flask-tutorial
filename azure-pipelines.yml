@@ -68,9 +68,8 @@ steps:
     pylint startup.py
   displayName: 'Analisis codigo estatico - Pylint'
 - script: |
-    pip install pytest pytest-azurepipelines
     pytest -v --cov coverage_example
-  displayName: 'pytest'
+  displayName: 'pruebas de cobertura - pytest-cov'
 - script: |
     bandit -r devsecops_example
   displayName: 'Analisis vulnerabilidades Python - Bandit' 
