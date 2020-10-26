@@ -54,6 +54,7 @@ steps:
   displayName: 'Install dependencies' 
 - script: |
     pycodestyle --show-source --show-pep8 startup.py
+    pycodestyle --show-source --show-pep8 hello_app/*.py
   displayName: 'Analisis codigo estatico - pycodestyle'
 - script: |
     pyflakes startup.py
