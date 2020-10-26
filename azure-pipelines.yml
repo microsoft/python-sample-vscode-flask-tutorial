@@ -50,7 +50,11 @@ steps:
     pip install -r requirements.txt
     pip install pylint
     pip install pyflakes
+    pip install pycodestyle
   displayName: 'Install dependencies' 
+- script: |
+    pycodestyle --show-source --show-pep8 startup.py
+  displayName: 'Analisis codigo estatico - pycodestyle'
 - script: |
     pyflakes startup.py
   displayName: 'Analisis codigo estatico - pyflakes'
