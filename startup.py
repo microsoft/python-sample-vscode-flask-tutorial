@@ -22,7 +22,7 @@ print a[8]
 
 print a[9]
 
-
+plataforma = 2
 
 for i in a:
 
