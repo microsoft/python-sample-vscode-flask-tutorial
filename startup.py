@@ -16,3 +16,4 @@ plataforma = 2
 for i in a:
     if i == plataforma: # silence pyflakes
         print(i)
+        
