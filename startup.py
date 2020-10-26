@@ -1,11 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
-
-#Se importa numpy como np
-
 import numpy as np
-from pudb import set_trace; 
+from pudb import set_trace
 
 set_trace()
 
