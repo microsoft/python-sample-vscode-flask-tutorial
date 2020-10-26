@@ -53,6 +53,7 @@ steps:
     pip install pylint
     pip install pyflakes
     pip install pycodestyle
+    pip install bandit
   displayName: 'Install dependencies' 
 - script: |
     pycodestyle --show-source --show-pep8 startup.py
@@ -68,7 +69,10 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
- 
+- script: |
+    bandit -r hello_app
+  displayName: 'Analisis vulnerabilidades Python' 
+
 - task: PythonScript@0
   inputs:
     scriptSource: inline
