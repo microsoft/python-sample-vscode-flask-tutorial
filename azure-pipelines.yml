@@ -47,8 +47,11 @@ steps:
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
+    pip install pylint
   displayName: 'Install dependencies'
-
+- script: |
+    pylint -rn startup.py
+  displayName: 'Analisis codigo estatico'
 - script: |
     pip install pytest pytest-azurepipelines
     pytest
