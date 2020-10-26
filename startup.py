@@ -1,7 +1,9 @@
-''' 
-This program adds two numbers and displays their results 
-'''
-A = 1
-B = 2
-if A is not None:
-    print('Sum of Numbers:', A) 
+"""
+Code to add two numbers
+"""
+
+a = 23
+b = 45
+c = a + b
+
+print(c)
