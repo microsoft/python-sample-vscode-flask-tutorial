@@ -71,7 +71,7 @@ steps:
   displayName: 'pytest'
 - script: |
     bandit -r hello_app
-  displayName: 'Analisis vulnerabilidades Python' 
+  displayName: 'Analisis vulnerabilidades Python - Bandit' 
 
 - task: PythonScript@0
   inputs:
