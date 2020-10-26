@@ -67,7 +67,7 @@ steps:
   displayName: 'Analisis codigo estatico - Pylint'
 - script: |
     pip install pytest pytest-azurepipelines
-    pytest -v --cov
+    pytest -v --cov coverage_example
   displayName: 'pytest'
 - script: |
     bandit -r devsecops_example
