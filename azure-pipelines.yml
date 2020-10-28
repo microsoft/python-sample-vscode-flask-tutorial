@@ -70,6 +70,12 @@ steps:
 - script: |
     pytest -v --cov coverage_example
   displayName: 'pruebas de cobertura - pytest-cov'
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonarqube'
+    scannerMode: 'MSBuild'
+    projectKey: 'sonardatalake'
+    projectName: 'python data lake'
 - script: |
     bandit -r devsecops_example
   displayName: 'Analisis vulnerabilidades Python - Bandit' 
