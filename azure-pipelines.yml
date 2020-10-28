@@ -49,6 +49,11 @@ steps:
 - script: |
     pytest --junitxml=$(Build.StagingDirectory)/test.xml --cov --cov-report=xml --cov-report=html --cov coverage_example
   displayName: 'pruebas de cobertura - pytest-cov'
+- task: PublishTestResults@2
+  displayName: 'Publish test result /test.xml'
+  inputs:
+    testResultsFiles: '$(Build.StagingDirectory)/test.xml'
+    testRunTitle: 010
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'sonarcloud'
@@ -65,7 +70,7 @@ steps:
   inputs:
     pollingTimeoutSec: '30'
 - task: PublishCodeCoverageResults@1
-  displayName: 'Publicar codigo cobertura'
+  displayName: 'Sonar Publicar codigo cobertura'
   inputs:
     codeCoverageTool: Cobertura
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage.xml'
