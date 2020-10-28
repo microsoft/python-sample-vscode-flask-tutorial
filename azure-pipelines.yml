@@ -80,6 +80,9 @@ steps:
     cliProjectName: 'sonarcloud data lake'
     cliSources: '.'
 - task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '25'
 - script: |
     bandit -r devsecops_example
   displayName: 'Analisis vulnerabilidades Python - Bandit' 
