@@ -25,24 +25,6 @@ steps:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
 - script: |
-    git checkout ${BUILD_SOURCEBRANCHNAME}
-    AWS_CODECOMMIT_REPO="ssh://git-codecommit.${CODECOMMIT_REGION}.amazonaws.com/v1/repos/${CODECOMMIT_NAME}"
-    mkdir ~/.ssh
-    echo $(AWS_PRIVATE_KEY) > ~/.ssh/codecommit_rsa.tmp
-    base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/aws_rsa
-    chmod 600 ~/.ssh/aws_rsa 
-    cat <<EOF > ~/.ssh/config
-      Host git-codecommit.*.amazonaws.com
-      User ${CODECOMMIT_USER}
-      IdentityFile ~/.ssh/aws_rsa
-    EOF
-    set +e
-    ssh -o StrictHostKeyChecking=no git-codecommit.${CODECOMMIT_REGION}.amazonaws.com
-    set -e
-    git remote set-url origin --push ${AWS_CODECOMMIT_REPO}
-    git push origin ${BUILD_SOURCEBRANCHNAME}
-  displayName: 'Push AWS CodeCommit'
-- script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
     pip install pytest
@@ -76,15 +58,42 @@ steps:
     cliProjectKey: 'sonarcloud_datalake'
     cliProjectName: 'sonarcloud data lake'
     cliSources: '.'
+    extraProperties: |
+      sonar.python.coverage.reportPath=$(System.DefaultWorkingDirectory)/coverage.xml
 - task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1
   inputs:
-    pollingTimeoutSec: '300'
+    pollingTimeoutSec: '30'
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publicar codigo cobertura'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/htmlcov'
+    additionalCodeCoverageFiles: '$(System.DefaultWorkingDirectory)/**'
 # bandit -r devsecops_example
 - script: |
     bandit -r hello_app
     echo 'Por el momento vacio para que el Pipeline se ejecute sin problema script: bandit -r devsecops_example'
   displayName: 'Analisis vulnerabilidades Python - Bandit' 
+- script: |
+    git checkout ${BUILD_SOURCEBRANCHNAME}
+    AWS_CODECOMMIT_REPO="ssh://git-codecommit.${CODECOMMIT_REGION}.amazonaws.com/v1/repos/${CODECOMMIT_NAME}"
+    mkdir ~/.ssh
+    echo $(AWS_PRIVATE_KEY) > ~/.ssh/codecommit_rsa.tmp
+    base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/aws_rsa
+    chmod 600 ~/.ssh/aws_rsa 
+    cat <<EOF > ~/.ssh/config
+      Host git-codecommit.*.amazonaws.com
+      User ${CODECOMMIT_USER}
+      IdentityFile ~/.ssh/aws_rsa
+    EOF
+    set +e
+    ssh -o StrictHostKeyChecking=no git-codecommit.${CODECOMMIT_REGION}.amazonaws.com
+    set -e
+    git remote set-url origin --push ${AWS_CODECOMMIT_REPO}
+    git push origin ${BUILD_SOURCEBRANCHNAME}
+  displayName: 'Push AWS CodeCommit'
 - task: PythonScript@0
   inputs:
     scriptSource: inline
@@ -98,7 +107,6 @@ steps:
       args = parser.parse_args()
       print ('Hello ', args.world)
     arguments: --world Venus
-
 - task: PublishTestResults@2
   condition: succeededOrFailed()
   inputs:
