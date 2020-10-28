@@ -1,12 +1,18 @@
-""" 
-In this sample, the Flask app object is contained within the hello_app *module*;
-that is, hello_app contains an __init__.py along with relative imports. Because
-of this structure, a file like webapp.py cannot be run directly as the startup
-file through Gunicorn; the result is "Attempted relative import in non-package".
-
-The solution is to provide a simple alternate startup file, like this present
-startup.py, that just imports the app object. You can then just specify
-startup:app in the Gunicorn command.
+"""
+Proyecto ejemplo.
 """
 
-from hello_app.webapp import app
+import numpy as np
+from pudb import set_trace
+
+set_trace()
+
+a = np.arange(10)
+
+print(a)  # silence pyflakes
+print(a[8])
+print(a[9])
+PLATAFORMA = 2
+for i in a:
+    if i == PLATAFORMA:  # silence pyflakes
+        print(i)
