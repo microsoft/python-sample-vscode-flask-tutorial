@@ -74,9 +74,11 @@ steps:
   inputs:
     SonarCloud: 'sonarcloud'
     organization: 'locoalien'
-    scannerMode: 'MSBuild'
-    projectKey: 'sonarcloud_datalake'
-    projectName: 'sonarcloud data lake'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'sonarcloud_datalake'
+    cliProjectName: 'sonarcloud data lake'
+    cliSources: '.'
 - task: SonarCloudAnalyze@1
 - script: |
     bandit -r devsecops_example
