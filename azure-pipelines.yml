@@ -47,7 +47,7 @@ steps:
     pylint startup.py
   displayName: 'Analisis codigo estatico - Pylint'
 - script: |
-    pytest -v --cov coverage_example
+    pytest --junitxml=$(Build.StagingDirectory)/test.xml --cov --cov-report=xml --cov-report=html --cov coverage_example
   displayName: 'pruebas de cobertura - pytest-cov'
 - task: SonarCloudPrepare@1
   inputs:
