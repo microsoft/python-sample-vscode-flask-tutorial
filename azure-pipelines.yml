@@ -47,9 +47,9 @@ steps:
       pylint --generate-rcfile > pylintrc
       echo "**** Agregando excepciones a AWS Lambda functions ****"
       echo "Config - Ignorando 'librerias importadas'"
-      sed 's/ignore-imports=no/ignore-imports=yes/' $(System.DefaultWorkingDirectory)/pylintrc
+      sed 's/ignored-modules=/ignore-modules=datalake_library/' $(System.DefaultWorkingDirectory)/pylintrc
       echo "Config - Ignorando 'variables no usadas'"
-      sed 's/allow-global-unused-variables=yes/allow-global-unused-variables=no' pylintrc
+      # sed 's/allow-global-unused-variables=yes/allow-global-unused-variables=no' pylintrc
       # C0111 => Missing docstring
       # W0108 => unnecessary lambda
       # W0142 => Used * or ** magic
