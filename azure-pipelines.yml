@@ -43,11 +43,23 @@ steps:
   displayName: Analisis codigo estatico - Pylint
   inputs:
     script: |
-      echo "Creacion archivo configuracion Pylint para AWS SDFL"
+      echo "**** Creacion archivo configuracion Pylint para AWS SDFL ****"
       pylint --generate-rcfile > .pylintrc
-      echo "Agregando excepciones a AWS Lambda functions"
+      echo "**** Agregando excepciones a AWS Lambda functions ****"
+      echo "Config - Ignorando 'librerias importadas'"
       sed 's/ignore-imports=no/ignore-imports=yes/' .pylintrc
+      echo "Config - Ignorando 'variables no usadas'"
       sed 's/allow-global-unused-variables=yes/allow-global-unused-variables=no' .pylintrc
+      # C0111 => Missing docstring
+      # W0108 => unnecessary lambda
+      # W0142 => Used * or ** magic
+      # R0921 => Abstract class not referenced
+      # R0205 => Useless object inheritence: codebase still supports 2.7
+      # E0401 => Unable to import 'datalake_library'
+      # C0301 => Line too long (119/100) (line-too-long)
+      # C0103 => Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+      # C0116 => Missing function or method docstring (missing-function-docstring)
+      sed 's/disable=/I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116/g' .pylintrc
       for file in $(find . -name "*py")
       do
         pylint $file
