@@ -39,14 +39,13 @@ steps:
     pyflakes startup.py
   displayName: 'Analisis codigo estatico - pyflakes'
 
-- task: CmdLine@2
+- task: Analisis codigo estatico - Pylint
   inputs:
     script: |
       for file in $(find . -name "*py")
       do
         pylint $file
       done
-    displayName: Analisis codigo estatico - Pylint
 - script: |
     pytest --junitxml=$(Build.StagingDirectory)/test.xml --cov --cov-report=xml --cov-report=html --cov coverage_example
   displayName: 'pruebas de cobertura - pytest-cov'
