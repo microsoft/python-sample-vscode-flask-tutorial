@@ -39,8 +39,7 @@ steps:
     pyflakes startup.py
   displayName: 'Analisis codigo estatico - pyflakes'
 - script: |
-    pylint startup.py
-    for file in$(find . -name "*py"); then pylint $file; do
+    for file in $(find . -name "*py"); then pylint $file; do
   displayName: 'Analisis codigo estatico - Pylint'
 - script: |
     pytest --junitxml=$(Build.StagingDirectory)/test.xml --cov --cov-report=xml --cov-report=html --cov coverage_example
