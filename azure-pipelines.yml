@@ -44,7 +44,7 @@ steps:
     script: |
       for file in $(find . -name "*py")
       do
-        then pylint $file;
+        pylint $file
       done
 - script: |
     for file in $(find . -name "*py");
