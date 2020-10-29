@@ -47,6 +47,7 @@ steps:
       pylint --generate-rcfile > .pylintrc
       echo "Agregando excepciones a AWS Lambda functions"
       sed 's/ignore-imports=no/ignore-imports=yes/' .pylintrc
+      sed 's/allow-global-unused-variables=yes/allow-global-unused-variables=no' .pylintrc
       for file in $(find . -name "*py")
       do
         pylint $file
