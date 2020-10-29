@@ -54,7 +54,7 @@ steps:
     SonarCloud: 'sonarcloud'
     organization: 'locoalien'
     scannerMode: 'CLI'
-    configMode: 'manual'
+    configMode: 'manual' 
     cliProjectKey: 'sonarcloud_datalake'
     cliProjectName: 'sonarcloud data lake'
     cliSources: '.'
