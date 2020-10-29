@@ -46,12 +46,7 @@ steps:
       do
         pylint $file
       done
-- script: |
-    for file in $(find . -name "*py");
-    do;
-      then pylint $file;
-    done;
-  displayName: 'Analisis codigo estatico - Pylint'
+    displayName: Analisis codigo estatico - Pylint
 - script: |
     pytest --junitxml=$(Build.StagingDirectory)/test.xml --cov --cov-report=xml --cov-report=html --cov coverage_example
   displayName: 'pruebas de cobertura - pytest-cov'
