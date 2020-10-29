@@ -59,7 +59,7 @@ steps:
       # C0301 => Line too long (119/100) (line-too-long)
       # C0103 => Variable name "X" doesn't conform to snake_case naming style (invalid-name)
       # C0116 => Missing function or method docstring (missing-function-docstring)
-      echo "--disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116" | sed 'i\# --disable= '
+      echo "--disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116" | sed 'i\confidence='
       # sed 's/# --disable=/--disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116, /g' $(System.DefaultWorkingDirectory)/.pylintrc
       ls
       for file in $(find . -name "*py")
