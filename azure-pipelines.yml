@@ -39,7 +39,8 @@ steps:
     pyflakes startup.py
   displayName: 'Analisis codigo estatico - pyflakes'
 
-- task: Analisis codigo estatico - Pylint
+- task: CmdLine@2
+  displayName: Analisis codigo estatico - Pylint
   inputs:
     script: |
       for file in $(find . -name "*py")
