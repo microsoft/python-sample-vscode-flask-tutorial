@@ -46,7 +46,6 @@ steps:
       echo "Creacion archivo configuracion Pylint para AWS SDFL"
       pylint --generate-rcfile > .pylintrc
       echo "Agregando excepciones a AWS Lambda functions"
-      echo  ignore-imports=yes > .pylintrc
       sed 's/ignore-imports=no/ignore-imports=yes/' .pylintrc
       for file in $(find . -name "*py")
       do
