@@ -43,6 +43,10 @@ steps:
   displayName: Analisis codigo estatico - Pylint
   inputs:
     script: |
+      echo "Creacion archivo configuracion Pylint para AWS SDFL"
+      pylint --generate-rcfile > .pylintrc
+      echo "Agregando excepciones a AWS Lambda functions"
+      echo  ignore-imports=yes > .pylintrc
       for file in $(find . -name "*py")
       do
         pylint $file
