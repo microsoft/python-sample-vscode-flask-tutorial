@@ -63,7 +63,7 @@ steps:
       ls
       for file in $(find . -name "*py")
       do
-        pylint $file
+        pylint $file --rcfile $(System.DefaultWorkingDirectory)/.pylintrc
       done
 - script: |
     pytest --junitxml=$(Build.StagingDirectory)/test.xml --cov --cov-report=xml --cov-report=html --cov coverage_example
