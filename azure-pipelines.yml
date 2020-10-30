@@ -47,9 +47,8 @@ steps:
       pylint --generate-rcfile > $(System.DefaultWorkingDirectory)/pylintrc
       echo "**** Agregando excepciones a AWS Lambda functions ****"
       echo "Config - Ignorando 'librerias importadas'"
-      sed -i 's/ignored-modules=/ignored-modules=datalake_library/g' $(System.DefaultWorkingDirectory)/pylintrc
-      echo "Config - Ignorando 'variables no usadas'"
-      sed -i 's/allow-global-unused-variables=yes/allow-global-unused-variables=no' $(System.DefaultWorkingDirectory)/pylintrc
+      sed -i 's/ignored-modules=/ignored-modules=datalake_library, datalake_library.octagon/g' $(System.DefaultWorkingDirectory)/pylintrc
+
       # C0111 => Missing docstring
       # W0108 => unnecessary lambda
       # W0142 => Used * or ** magic
@@ -59,7 +58,6 @@ steps:
       # C0301 => Line too long (119/100) (line-too-long)
       # C0103 => Variable name "X" doesn't conform to snake_case naming style (invalid-name)
       # C0116 => Missing function or method docstring (missing-function-docstring)
-      # W0611 => Unused Artifact imported from datalake_library.octagon
 
       sed -i 's/disable=/disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116, /g' $(System.DefaultWorkingDirectory)/pylintrc
       for file in $(find . -name "*py")
