@@ -44,7 +44,6 @@ steps:
   inputs:
     script: |
       echo "**** Creacion archivo configuracion Pylint para AWS SDFL ****"
-      mkdir ~/pylint_files
       pylint --generate-rcfile > $(System.DefaultWorkingDirectory)/pylintrc
       echo "**** Agregando excepciones a AWS Lambda functions ****"
       echo "Config - Ignorando 'librerias importadas'"
@@ -60,12 +59,11 @@ steps:
       # C0301 => Line too long (119/100) (line-too-long)
       # C0103 => Variable name "X" doesn't conform to snake_case naming style (invalid-name)
       # C0116 => Missing function or method docstring (missing-function-docstring)
-      # sed '2i\disable=W' $(System.DefaultWorkingDirectory)/pylintrc
-      # echo "--disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116" | sed 'i\confidence='
+      # W0611 => Unused Artifact imported from datalake_library.octagon
+
       sed -i 's/disable=/disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116, /g' $(System.DefaultWorkingDirectory)/pylintrc
       for file in $(find . -name "*py")
       do
-        #pylint -d C,W,no-error,design $file --rcfile=$(System.DefaultWorkingDirectory)/.pylintrc
         pylint $file --rcfile=$(System.DefaultWorkingDirectory)/pylintrc
       done
 - script: |
