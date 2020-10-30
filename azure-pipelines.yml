@@ -63,6 +63,7 @@ steps:
       # echo "--disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116" | sed 'i\confidence='
       sed 's/disable=/disable=C,W, /g' $(System.DefaultWorkingDirectory)/pylintrc
       ls
+      cat pylintrc
       for file in $(find . -name "*py")
       do
         #pylint -d C,W,no-error,design $file --rcfile=$(System.DefaultWorkingDirectory)/.pylintrc
