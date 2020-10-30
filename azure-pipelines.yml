@@ -65,7 +65,7 @@ steps:
       pylint --rcfile=$(System.DefaultWorkingDirectory)/.pylintrc
       for file in $(find . -name "*py")
       do
-        pylint $file --rcfile=$(System.DefaultWorkingDirectory)/.pylintrc
+        pylint -d C,W,no-error,design $file --rcfile=$(System.DefaultWorkingDirectory)/.pylintrc
       done
 - script: |
     pytest --junitxml=$(Build.StagingDirectory)/test.xml --cov --cov-report=xml --cov-report=html --cov coverage_example
