@@ -50,7 +50,7 @@ steps:
       echo "Config - Ignorando 'librerias importadas'"
       sed -i 's/ignored-modules=/ignored-modules=datalake_library/g' $(System.DefaultWorkingDirectory)/pylintrc
       echo "Config - Ignorando 'variables no usadas'"
-      # sed 's/allow-global-unused-variables=yes/allow-global-unused-variables=no' pylintrc
+      sed -i 's/allow-global-unused-variables=yes/allow-global-unused-variables=no' $(System.DefaultWorkingDirectory)/pylintrc
       # C0111 => Missing docstring
       # W0108 => unnecessary lambda
       # W0142 => Used * or ** magic
@@ -62,11 +62,7 @@ steps:
       # C0116 => Missing function or method docstring (missing-function-docstring)
       # sed '2i\disable=W' $(System.DefaultWorkingDirectory)/pylintrc
       # echo "--disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116" | sed 'i\confidence='
-      sed 's/disable=/disable=C,W, /g' $(System.DefaultWorkingDirectory)/pylintrc
-      
-      ls
-      cat $(System.DefaultWorkingDirectory)/pylintrc
-
+      sed -i 's/disable=/disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116, /g' $(System.DefaultWorkingDirectory)/pylintrc
       for file in $(find . -name "*py")
       do
         #pylint -d C,W,no-error,design $file --rcfile=$(System.DefaultWorkingDirectory)/.pylintrc
