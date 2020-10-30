@@ -48,7 +48,7 @@ steps:
       echo "**** Agregando excepciones a AWS Lambda functions ****"
       echo "Config - Ignorando 'librerias importadas'"
       sed -i 's/ignored-modules=/ignored-modules=datalake_library, datalake_library.octagon/g' $(System.DefaultWorkingDirectory)/pylintrc
-
+      sed -i 's/ignored-argument-names=/ignored-argument-names=context|/g' $(System.DefaultWorkingDirectory)/pylintrc
       # C0111 => Missing docstring
       # W0108 => unnecessary lambda
       # W0142 => Used * or ** magic
