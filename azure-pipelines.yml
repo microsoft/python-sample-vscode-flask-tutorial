@@ -44,10 +44,10 @@ steps:
   inputs:
     script: |
       echo "**** Creacion archivo configuracion Pylint para AWS SDFL ****"
-      pylint --generate-rcfile > pylintrc2
+      pylint --generate-rcfile > pylintrc
       echo "**** Agregando excepciones a AWS Lambda functions ****"
       echo "Config - Ignorando 'librerias importadas'"
-      sed 's/ignored-modules=/ignored-modules=datalake_library/g' $(System.DefaultWorkingDirectory)/pylintrc2
+      sed 's/ignored-modules=/ignored-modules=datalake_library/g' $(System.DefaultWorkingDirectory)/pylintrc
       echo "Config - Ignorando 'variables no usadas'"
       # sed 's/allow-global-unused-variables=yes/allow-global-unused-variables=no' pylintrc
       # C0111 => Missing docstring
@@ -62,7 +62,6 @@ steps:
       # sed '2i\disable=W' $(System.DefaultWorkingDirectory)/pylintrc
       # echo "--disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116" | sed 'i\confidence='
       # sed 's/disable=/disable=I, C0111, W0108, W0142, R0921, R0205, C0114, E0401, C0301, C0103, C0116, /g' $(System.DefaultWorkingDirectory)/pylintrc2
-      pylint --rcfile=$(System.DefaultWorkingDirectory)/pylintrc
       ls
       for file in $(find . -name "*py")
       do
