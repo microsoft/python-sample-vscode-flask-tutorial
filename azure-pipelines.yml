@@ -11,13 +11,13 @@ variables:
   azureServiceConnectionId: '53246761-6eb1-4aae-814e-00b2a510df77'
   
   # Web app name
-  webAppName: 'webAppName'
+  webAppName: ''
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
   # Environment name
-  environmentName: 'ENV'
+  environmentName: ''
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
@@ -68,7 +68,7 @@ stages:
   - deployment: DeploymentJob
   pool:
     vmImage: $(vmImageName)
-    environment: ENV
+    environment: $(environmentName)
     strategy:
     runOnce:
     deploy:
