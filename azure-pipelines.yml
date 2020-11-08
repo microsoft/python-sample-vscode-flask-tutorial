@@ -72,16 +72,16 @@ stages:
     strategy:
     runOnce:
     deploy:
-      steps:
+    steps:
 
-      - task: UsePythonVersion@0
-        inputs:
+    - task: UsePythonVersion@0
+      inputs:
           versionSpec: '$(pythonVersion)'
-        displayName: 'Use Python version'
+      displayName: 'Use Python version'
 
-      - task: AzureWebApp@1
-        displayName: 'Deploy Azure Web App : {{ webAppName }}'
-        inputs:
+    - task: AzureWebApp@1
+      displayName: 'Deploy Azure Web App : {{ webAppName }}'
+      inputs:
           azureSubscription: $(azureServiceConnectionId)
           appName: $(webAppName)
           package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
