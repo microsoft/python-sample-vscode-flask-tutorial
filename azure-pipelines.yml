@@ -16,8 +16,8 @@ resources:
       ###paths:
       ##include:
         #- awsAlarmIntegration/*
-    pool:
-      vmImage: 'ubuntu-latest'
+      pool:
+        vmImage: 'ubuntu-latest'
 
     #global variables:
     variables:
