@@ -23,10 +23,10 @@ stages:
 - stage: CI
   displayName: 'Continuous Integration'
   jobs:
-  - job: myJob
+  - job: BeforeTest
     timeoutInMinutes: 10
     steps:
-    - bash: echo "Hello world"
+    - bash: echo "Hello world. Running job BeforeTest"
 
   - job: Test
     timeoutInMinutes: 10
@@ -57,3 +57,12 @@ stages:
         pip install pytest pytest-azurepipelines
         pytest
       displayName: 'pytest'
+
+- stage: TestSuccessful
+  dependsOn: CI
+  displayName: 'Continuous Integration - Post Test'
+  jobs:
+  - job: PostTest
+    timeoutInMinutes: 10
+    steps:
+    - bash: echo "Hello world. At Stage Post Test"
