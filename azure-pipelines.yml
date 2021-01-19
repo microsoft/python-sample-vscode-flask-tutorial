@@ -16,8 +16,6 @@ pool:
 
 #global variables:
 variables:
-  artifactName: ReleaseArtifact
-  releaseTemplate: 'templates/azure-pipelines.release.yml'
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')] # runtime expression
   isMyBranch: $[eq(variables['Build.SourceBranch'], 'refs/heads/azure-pipelines-wens-test')] # runtime expression
 stages:
