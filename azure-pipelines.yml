@@ -17,10 +17,13 @@ stages:
 - stage: CI
   displayName: 'Continuous Integration'
   jobs:
+  - job: myJob
+    timeoutInMinutes: 10
+    steps:
+    - bash: echo "Hello world"
+
   - job: Test
     timeoutInMinutes: 10
-
-
 
     strategy:
       matrix:
