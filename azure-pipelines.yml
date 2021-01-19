@@ -9,7 +9,7 @@ resources:
     source: wenlianwang.azure-devops-python-samples # Name of the pipeline referenced by the pipeline resource
     trigger:
       branches: 
-      include:
+        include:
         - azure-pipelines-wens-test
         - main
 
