@@ -60,6 +60,7 @@ stages:
 
 - stage: TestSuccessful
   dependsOn: CI
+  condition: and(succeeded(), eq(variables.isMain, true))
   displayName: 'Continuous Integration - Post Test'
   jobs:
   - job: PostTest
