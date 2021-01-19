@@ -6,7 +6,7 @@ trigger:
   branches: 
     include:
     - azure-pipelines-wens-test
-    - main
+    - master
 
 #paths:
 #include:
@@ -16,7 +16,7 @@ pool:
 
 #global variables:
 variables:
-  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')] # runtime expression
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')] # runtime expression
   isMyBranch: $[eq(variables['Build.SourceBranch'], 'refs/heads/azure-pipelines-wens-test')] # runtime expression
 stages:
 - stage: CI
