@@ -2,84 +2,79 @@
 # Create and test a Python package on multiple Python versions.
 # Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
-#####resources:
-  ####pipelines:
-  ###- pipeline: myDownStreamPipeline   # Name of the pipeline resource
-    ##project: wenlianwang/azure-devops-python-samples
-    #source: wenlianwang.azure-devops-python-samples # Name of the pipeline referenced by the pipeline resource
-    trigger:
-      branches: 
-        include:
-        - azure-pipelines-wens-test
-        - main
+trigger:
+  branches: 
+    include:
+    - azure-pipelines-wens-test
+    - main
 
-      ###paths:
-      ##include:
-        #- awsAlarmIntegration/*
-      pool:
-        vmImage: 'ubuntu-latest'
+#paths:
+#include:
+  #- awsAlarmIntegration/*
+pool:
+  vmImage: 'ubuntu-latest'
 
-    #global variables:
-    variables:
-      artifactName: ReleaseArtifact
-      releaseTemplate: 'templates/azure-pipelines.release.yml'
-      isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')] # runtime expression
-      isMyBranch: $[eq(variables['Build.SourceBranch'], 'refs/heads/azure-pipelines-wens-test')] # runtime expression
-    stages:
-    - stage: CI
-      displayName: 'Continuous Integration'
-      jobs:
-      - job: BeforeTest
-        timeoutInMinutes: 10
-        steps:
-        - bash: echo "Hello world. Running job BeforeTest"
+#global variables:
+variables:
+  artifactName: ReleaseArtifact
+  releaseTemplate: 'templates/azure-pipelines.release.yml'
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')] # runtime expression
+  isMyBranch: $[eq(variables['Build.SourceBranch'], 'refs/heads/azure-pipelines-wens-test')] # runtime expression
+stages:
+- stage: CI
+  displayName: 'Continuous Integration'
+  jobs:
+  - job: BeforeTest
+    timeoutInMinutes: 10
+    steps:
+    - bash: echo "Hello world. Running job BeforeTest"
 
-      - job: Test
-        timeoutInMinutes: 10
+  - job: Test
+    timeoutInMinutes: 10
 
-        strategy:
-          matrix:
-            Python27:
-              python.version: '2.7'
-            Python35:
-              python.version: '3.5'
-            Python36:
-              python.version: '3.6'
-            Python37:
-              python.version: '3.7'
+    strategy:
+      matrix:
+        Python27:
+          python.version: '2.7'
+        Python35:
+          python.version: '3.5'
+        Python36:
+          python.version: '3.6'
+        Python37:
+          python.version: '3.7'
 
-        steps:
-        - task: UsePythonVersion@0
-          inputs:
-            versionSpec: '$(python.version)'
-          displayName: 'Use Python $(python.version)'
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.version)'
+      displayName: 'Use Python $(python.version)'
 
-        - script: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-          displayName: 'Install dependencies'
+    - script: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+      displayName: 'Install dependencies'
 
-        - script: |
-            pip install pytest pytest-azurepipelines
-            pytest
-          displayName: 'pytest'
+    - script: |
+        pip install pytest pytest-azurepipelines
+        pytest
+      displayName: 'pytest'
 
-    - stage: TestMainBranch
-      dependsOn: CI
-      condition: and(succeeded(), eq(variables.isMain, true))
-      displayName: 'Continuous Integration - Post Test'
-      jobs:
-      - job: PostTest
-        timeoutInMinutes: 10
-        steps:
-        - bash: echo "Hello world. At Stage TestMainBranch"
+- stage: TestMainBranch
+  dependsOn: CI
+  condition: and(succeeded(), eq(variables.isMain, true))
+  displayName: 'Continuous Integration - Post Test'
+  jobs:
+  - job: PostTest
+    timeoutInMinutes: 10
+    steps:
+    - bash: echo "Hello world. At Stage TestMainBranch"
 
-    - stage: TestFeatureBranch
-      dependsOn: CI
-      condition: and(succeeded(), eq(variables.isMyBranch, true))
-      displayName: 'Continuous Integration - Post Test'
-      jobs:
-      - job: PostTest
-        timeoutInMinutes: 10
-        steps:
-        - script: echo $(Build.SourceBranchName)
+- stage: TestFeatureBranch
+  dependsOn: CI
+  condition: and(succeeded(), eq(variables.isMyBranch, true))
+  displayName: 'Continuous Integration - Post Test'
+  jobs:
+  - job: PostTest
+    timeoutInMinutes: 10
+    steps:
+    - script: echo $(Build.SourceBranchName)
