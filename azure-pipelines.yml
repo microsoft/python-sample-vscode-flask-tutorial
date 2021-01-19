@@ -70,10 +70,10 @@ stages:
 
 - stage: TestFeatureBranch
   dependsOn: CI
-  condition: and(succeeded(), eq(variables.isMain, false))
+  condition: succeeded()
   displayName: 'Continuous Integration - Post Test'
   jobs:
   - job: PostTest
     timeoutInMinutes: 10
     steps:
-    - bash: echo "Hello world. At Stage TestFeatrueBranch"
+    - bash: echo "At Branch: $(Build.SourceBranchName)"
