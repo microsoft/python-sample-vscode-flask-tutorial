@@ -70,7 +70,7 @@ stages:
 
 - stage: TestFeatureBranch
   dependsOn: CI
-  condition: succeeded()
+  condition: and(succeeded(), eq(Build.SourceBranchName, 'azure-pipelines-wens-test'))
   displayName: 'Continuous Integration - Post Test'
   jobs:
   - job: PostTest
