@@ -5,7 +5,7 @@
 resources:
   pipelines:
   - pipeline: myDownStreamPipeline   # Name of the pipeline resource
-    source: security-lib-ci # Name of the pipeline referenced by the pipeline resource
+    source: wenlianwang.azure-devops-python-samples # Name of the pipeline referenced by the pipeline resource
     trigger: 
       branches:
       - releases/*
