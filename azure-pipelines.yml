@@ -8,6 +8,12 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
+
+#global variables:
+variables:
+  artifactName: ReleaseArtifact
+  releaseTemplate: 'templates/azure-pipelines.release.yml'
+
 strategy:
   matrix:
     Python27:
