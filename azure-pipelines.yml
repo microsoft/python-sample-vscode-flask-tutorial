@@ -19,6 +19,8 @@ pool:
 variables:
   artifactName: ReleaseArtifact
   releaseTemplate: 'templates/azure-pipelines.release.yml'
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')] # runtime expression
+  isMyBranch: $[eq(variables['Build.SourceBranch'], 'refs/heads/azure-pipelines-wens-test')] # runtime expression
 stages:
 - stage: CI
   displayName: 'Continuous Integration'
@@ -70,7 +72,7 @@ stages:
 
 - stage: TestFeatureBranch
   dependsOn: CI
-  condition: and(succeeded(), eq(variables.SourceBranchName, 'azure-pipelines-wens-test'))
+  condition: and(succeeded(), eq(variables.isMyBranch, true))
   displayName: 'Continuous Integration - Post Test'
   jobs:
   - job: PostTest
