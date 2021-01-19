@@ -15,8 +15,7 @@ variables:
   releaseTemplate: 'templates/azure-pipelines.release.yml'
 
 strategy:
-  #matrix:
-  parallel: 
+  matrix:
     Python27:
       python.version: '2.7'
     Python35:
