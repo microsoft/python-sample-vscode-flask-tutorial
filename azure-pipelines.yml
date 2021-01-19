@@ -5,11 +5,8 @@
 resources:
   pipelines:
   - pipeline: myDownStreamPipeline   # Name of the pipeline resource
+    project: wenlianwang/azure-devops-python-samples
     source: wenlianwang.azure-devops-python-samples # Name of the pipeline referenced by the pipeline resource
-    trigger: 
-      branches:
-      - azure-pipelines
-      - main
   trigger:
     branches: 
     include:
