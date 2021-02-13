@@ -5,6 +5,7 @@
 
 trigger:
 - master
+- test_branch
 
 pool:
   vmImage: ubuntu-18.04
