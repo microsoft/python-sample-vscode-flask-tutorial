@@ -1,0 +1,35 @@
+trigger:
+  - '*'
+
+pool:
+  vmImage: 'ubuntu-18.04'
+  demands:
+    - npm
+
+variables:
+  pythonVersion: '3.6'
+
+steps:
+
+  # Use a specific Python version
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(pythonVersion)'
+
+  # Run a python script
+  - script: python src/basic_print.py
+
+  # Run an inline python script
+  - task: PythonScript@0
+    inputs:
+      scriptSource: 'inline'
+      script: |
+        print('Printing from inline python script')
+
+  # Installing dependencies
+  - script: python -m pip install --upgrade pip setuptools wheel
+    displayName: 'Install dependencies'
+
+  # Intalling requirements
+  - script: pip install -r requirements.txt
+    displayName: 'Install requirements'
