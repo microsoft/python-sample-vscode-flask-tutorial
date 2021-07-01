@@ -33,7 +33,7 @@ steps:
 - script: |
     pip install pytest pytest-azurepipelines
     pytest
-    
+
  - task: PythonScript@0
   inputs:
     scriptSource: 'inline'
@@ -41,3 +41,4 @@ steps:
       print('Hello world 1')
       print('Hello world 2')
   displayName: 'pytest'
+
