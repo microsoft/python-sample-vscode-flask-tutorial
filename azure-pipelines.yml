@@ -33,9 +33,3 @@ steps:
 - script: |
     pip install pytest pytest-azurepipelines
     pytest
-
-- script: pip install tox
-    displayName: 'Install Tox'
-
-  - script: tox -e py
-    displayName: 'Run Tox'
