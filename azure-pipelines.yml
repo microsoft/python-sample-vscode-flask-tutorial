@@ -34,11 +34,8 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
 
- - task: PythonScript@0
-  inputs:
-    scriptSource: 'inline'
-    script: |
-      print('Hello world 1')
-      print('Hello world 2')
-  displayName: 'pytest'
+- script: pip install tox
+    displayName: 'Install Tox'
 
+  - script: tox -e py
+    displayName: 'Run Tox'
