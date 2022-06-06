@@ -10,7 +10,7 @@ pool:
   name: default
   vmImage: ubuntu-latest
   demands:
-    - agent.name =equals cole_desktop
+    - agent.name -equals cole_desktop
 
 strategy:
   matrix:
