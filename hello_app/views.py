@@ -3,7 +3,7 @@ from flask import Flask, render_template
 from . import app
 
 import sys
-sys.stdout = open("D:/home/LogFiles/app.log", "w")
+# sys.stdout = open("D:/home/LogFiles/app.log", "w")
 print("test")
 
 @app.route("/")
