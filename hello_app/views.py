@@ -9,10 +9,12 @@ def home():
 
 @app.route("/about/")
 def about():
+    print("Returned about page.")
     return render_template("about.html")
 
 @app.route("/contact/")
 def contact():
+    print("Returned contact page.")
     return render_template("contact.html")
 
 @app.route("/hello/")
