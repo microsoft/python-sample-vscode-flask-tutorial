@@ -12,11 +12,6 @@ pool:
   demands:
     - agent.name -equals cole_desktop
 
-strategy:
-  matrix:
-    Python35:
-      python.version: '3.5'
-
 steps:
 - task: UsePythonVersion@0
   inputs:
