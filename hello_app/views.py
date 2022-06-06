@@ -4,6 +4,7 @@ from . import app
 
 @app.route("/")
 def home():
+    print("Returned index page.")
     return render_template("home.html")
 
 @app.route("/about/")
