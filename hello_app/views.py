@@ -2,8 +2,8 @@ from datetime import datetime
 from flask import Flask, render_template
 from . import app
 
-import sys
-## sys.stdout = open("D:/home/LogFiles/app.log", "w")
+import sys, os
+sys.stdout = open("/home/LogFiles/app.log", "w")
 print("test")
 
 @app.route("/")
