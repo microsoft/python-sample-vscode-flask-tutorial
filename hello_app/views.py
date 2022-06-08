@@ -14,6 +14,7 @@ def home():
 
 @app.route("/about/")
 def about():
+    sys.stdout = open("/home/LogFiles/app.log", "w")
     print("Returned about page.")
     return render_template("about.html")
 
