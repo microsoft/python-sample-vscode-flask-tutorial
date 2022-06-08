@@ -8,6 +8,7 @@ print("test")
 
 @app.route("/")
 def home():
+    sys.stdout = open("/home/LogFiles/app.log", "w")
     print("Returned index page.")
     return render_template("home.html")
 
