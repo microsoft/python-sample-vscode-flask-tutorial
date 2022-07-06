@@ -5,9 +5,13 @@
 
 trigger:
 - master
+- feature/*
 
 pool:
   vmImage: ubuntu-latest
+
+variables:
+  imageName: 'pipelines-python-docker'
 
 steps:
 - task: UsePythonVersion@0
@@ -27,7 +31,16 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    pip install pytest pytest-azurepipelines
-    pip install pytest-cov
-    pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml
-  displayName: 'pytest'
+    python -m pip install flake8
+    flake8 .
+  displayName: 'Run lint tests'
+
+# Build on master only
+- task: Docker@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  displayName: Build an image
+  inputs:
+    repository: $(imageName)
+    command: build
+    Dockerfile: app/Dockerfile
+
