@@ -31,9 +31,10 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    python -m pip install flake8
-    flake8 .
-  displayName: 'Run lint tests'
+    pip install pytest pytest-azurepipelines
+    pip install pytest-cov
+    pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml
+  displayName: 'pytest'
 
 # Build on master only
 - task: Docker@2
