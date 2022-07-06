@@ -25,12 +25,25 @@ steps:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
 
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'inline'
+    script: |
+      print('Hello world 1')
+      print('Hello world 2')
+
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
 - script: |
+    python -m pip install flake8
+    flake8 .
+  displayName: 'Run lint tests'
+
+- script: |
     pip install pytest pytest-azurepipelines
-    pytest
+    pip install pytest-cov
+    pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml
   displayName: 'pytest'
