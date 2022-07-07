@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<p>Home page for the Visual Studio Code Flask tutorial.</p>
+<p>Define how many sets of hyperparameters you would like to sample:</p>
+<input type="text" name="Nhyp"/>
+<p>Define how many samples you would like to obtain from each set of hyperparameters:</p>
+<input type="text" name="Nsamps"/>
+<p>Run the select_hyperparameters.py file:</p>
+<input type="submit" name="submit_button" value="Sample Hyperposteriors">
+<p>Run the whole analysis:</p>
+<input type="submit" name="submit_button" value="Run Analysis">
+<p>Once the analysis completes something will appear below...</p>
+{% endblock %}

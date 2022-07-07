@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}
+About us
+{% endblock %}
+{% block content %}
+<p>
+    This is a work in progress, the goal is to have a sort of GUI for running the analysis.
+    <div>
+        <ul>
+          <li>You should be able to enter values for the number of hyperparameters and number of samples from each hyperparameter, then you should be able to click a button to run the analysis.</li>
+          <li>It would also be nice to have a percentage completion and an output saying at minimum 'success'.</li>
+          <li>There could be some sort of access to the SQL database of samples.</li>
+          <li>There could also be some nice Plotly plots or a produced link to a Tableau cloud.</li>
+        </ul>
+      </div>
+    Assuming we have a situation where someone wants to run this analysis but they don't know python or the command line, then we would want to:
+    <ol>
+        <li>Assume they can download the git repo like you would download anything.</li>
+        <li>Create an exectuable file that on clicking will create a venv from requirements.txt, the install file.</li>
+        <li>Create an executable file that will just run <code>python3 -m flask run</code>.</li>
+    </ol>
+</p>
+{% endblock %}
