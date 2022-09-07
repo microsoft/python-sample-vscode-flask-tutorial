@@ -9,7 +9,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 strategy:
-  maxParallel: 2
   matrix:
     Python36:
       python.version: '3.6'
