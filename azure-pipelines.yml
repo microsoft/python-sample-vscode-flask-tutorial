@@ -21,9 +21,13 @@ strategy:
 
 steps:
 - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(pythonVersion)'
+      displayName: 'Use Python $(pythonVersion)'
+
+- task: TwineAuthenticate@0
   inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+    artifactFeed: PortfolioFeed
 
 - script: |
     python -m pip install --upgrade pip
@@ -34,3 +38,6 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
+
+  - script: |
+   twine upload -r "PortfolioFeed" --config-file $(PYPIRC_PATH) hello_app/*
