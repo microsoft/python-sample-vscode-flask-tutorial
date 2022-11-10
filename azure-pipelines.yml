@@ -25,10 +25,6 @@ steps:
       versionSpec: '$(pythonVersion)'
       displayName: 'Use Python $(pythonVersion)'
 
-- task: TwineAuthenticate@0
-  inputs:
-    artifactFeed: PortfolioFeed
-
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
@@ -39,5 +35,3 @@ steps:
     pytest
   displayName: 'pytest'
 
-  - script: |
-   twine upload -r "PortfolioFeed" --config-file $(PYPIRC_PATH) hello_app/*
