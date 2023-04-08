@@ -13,11 +13,11 @@ strategy:
     Python27:
       python.version: '2.7'
     Python35:
-      python.version: '3.5'
+      python.version: '3.9'
     Python36:
-      python.version: '3.6'
+      python.version: '3.10'
     Python37:
-      python.version: '3.7'
+      python.version: '3.11'
 
 steps:
 - task: UsePythonVersion@0
