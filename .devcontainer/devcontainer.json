@@ -22,7 +22,7 @@
                 "ms-python.black-formatter",
                 "ms-python.vscode-pylance",
                 "charliermarsh.ruff",
-	        	"ms-python.debugpy"
+	        "ms-python.debugpy"
             ]
         }
     }
