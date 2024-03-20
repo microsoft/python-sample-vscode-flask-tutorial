@@ -10,26 +10,29 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
+  azureSubscription: '<Azure for Students>'
   dockerRegistryServiceConnection: '461af1f8-f248-4e0e-adf9-f782c8c27ba3'
   imageRepository: 'pythoncodeimage'
   containerRegistry: 'registry43.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
-
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+  # Additional variables
+  webAppName: 'docker-web-app' # Define your Azure Web App name
+  imageName: '$(containerRegistry)/$(imageRepository)' # Full image name
 
 stages:
 - stage: Build
-  displayName: Build and push stage
+  displayName: 'Build and push stage'
   jobs:
   - job: Build
-    displayName: Build
+    displayName: 'Build'
     pool:
       vmImage: $(vmImageName)
     steps:
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: 'Build and push an image to container registry'
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
@@ -37,16 +40,3 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-- stage: Deploy
-  displayName: 'Deploy to Azure Web App for Containers'
-  jobs:
-  - job: DeployToWebApp
-    displayName: 'Deploy to Web App for Containers'
-    steps:
-    - task: AzureWebAppContainer@1
-      displayName: 'Azure Web App for Containers Deploy'
-      inputs:
-        azureSubscription: '$(azureSubscription)'
-        appName: '$(webAppName)'
-        containers: '$(imageName):$(tag)'
-        containerRegistry: '$(containerRegistry)'
