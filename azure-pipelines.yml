@@ -11,7 +11,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   azureSubscription: '<Azure for Students>'
-  dockerRegistryServiceConnection: '461af1f8-f248-4e0e-adf9-f782c8c27ba3'
+  dockerRegistryServiceConnection: 'registry43'
   imageRepository: 'pythoncodeimage'
   containerRegistry: 'registry43.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
