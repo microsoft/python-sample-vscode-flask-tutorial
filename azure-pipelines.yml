@@ -53,3 +53,4 @@ stages:
         azureSubscription: $(azureSubscription)
         appName: $(appName)
         containers: $(containerRegistry)/$(imageRepository):$(tag)
+
