@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  azureSubscription: '<Azure for Students>'
+  azureSubscription: 'Azure for Students'
   dockerRegistryServiceConnection: 'registry43'
   imageRepository: 'pythoncodeimage'
   containerRegistry: 'registry43.azurecr.io'
